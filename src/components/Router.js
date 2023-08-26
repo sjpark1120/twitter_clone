@@ -7,16 +7,21 @@ import{
  } from "react-router-dom";
 import Auth from "../routes/Auth";
 import Home from "../routes/Home";
+import Navigation from "./Navigation";
+import Profile from "routes/Profile";
 
-function AppRouter() {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
-  return (
+function AppRouter({isLoggedIn}) {
+    return (
     <Router>
+      {isLoggedIn && <Navigation />}
       <Switch>
         {isLoggedIn ? (
           <>
-            <Route path="/">
+            <Route exact path="/">
               <Home />
+            </Route>
+            <Route exact path="/profile">
+              <Profile />
             </Route>
           </>
         ) : (
