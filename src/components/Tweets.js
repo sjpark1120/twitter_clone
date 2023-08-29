@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { dbService } from "../myBase";
+import { dbService, storageService } from "../myBase";
 import { doc, deleteDoc, updateDoc }from"firebase/firestore";
+import { deleteObject, ref } from "@firebase/storage";
 
 function Tweet({tweetObj, isOwner}) {
   const [editing, setEditing] =useState(false);
@@ -10,6 +11,7 @@ function Tweet({tweetObj, isOwner}) {
     if(ok){
       const TweetTextRef =doc(dbService, "tweets", `${tweetObj.id}`);
       await deleteDoc(TweetTextRef );
+      await deleteObject(ref(storageService, tweetObj.attachmentUrl));
     }
   }
   const toggleEditing = () => {
@@ -39,6 +41,8 @@ function Tweet({tweetObj, isOwner}) {
       ) : (
         <>
           <h4>{tweetObj.text}</h4>
+          {tweetObj.attachmentUrl && <img src={tweetObj.attachmentUrl} height="50px" width="50px" />}
+          {tweetObj.createdAt &&<span>{tweetObj.createdAt.toDate().toLocaleDateString()} {tweetObj.createdAt.toDate().toLocaleTimeString()}</span>}
           {isOwner && (
             <>
               <button onClick={onDeleteClick}>삭제</button>
