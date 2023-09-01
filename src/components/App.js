@@ -13,12 +13,14 @@ function App() {
         if(user.displayName == null){
           user.displayName = user.email.split('@')[0];
         }
+        setuserObj({
+          displayName : user.displayName,
+          uid: user.uid,
+          photoURL: user.photoURL,
+        });
+      }else{
+        setuserObj(null);
       }
-      setuserObj({
-        displayName : user.displayName,
-        uid: user.uid,
-        photoURL: user.photoURL,
-      });
       setInit(true);
     })
   }, [])

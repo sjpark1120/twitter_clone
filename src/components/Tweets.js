@@ -10,8 +10,10 @@ function Tweet({tweetObj, isOwner}) {
     const ok = window.confirm("정말 이 트윗을 삭제하시겠습니까?");
     if(ok){
       const TweetTextRef =doc(dbService, "tweets", `${tweetObj.id}`);
-      await deleteDoc(TweetTextRef );
-      await deleteObject(ref(storageService, tweetObj.attachmentUrl));
+      await deleteDoc(TweetTextRef);
+      if(tweetObj.attachmentUrl){ //첨부된 사진이 있으면 사진도 삭제
+        await deleteObject(ref(storageService, tweetObj.attachmentUrl));
+      }
     }
   }
   const toggleEditing = () => {

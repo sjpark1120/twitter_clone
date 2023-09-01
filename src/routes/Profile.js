@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getAuth, signOut, updateProfile } from "firebase/auth";
+import { signOut, updateProfile } from "firebase/auth";
 import { dbService, authService, storageService } from "myBase";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { onSnapshot, collection, getDocs, query, where, orderBy } from "firebase/firestore";
