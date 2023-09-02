@@ -5,9 +5,10 @@
 
 -link: https://sjpark1120.github.io/twitter_clone
 
-![image](https://github.com/sjpark1120/twitter_clone/assets/69676617/43421bd4-dc81-4fbe-bc16-ec321a9c7ceb)
-![image](https://github.com/sjpark1120/twitter_clone/assets/69676617/68ca4100-f5c0-4e3c-8a8a-852af55d2e7a)
+## 웹사이트 이미지
+-로그인화면
 ![image](https://github.com/sjpark1120/twitter_clone/assets/69676617/8264a395-6ee5-41dd-b242-99c0feed558d)
-
-
-
+-홈화면
+![image](https://github.com/sjpark1120/twitter_clone/assets/69676617/4883ce11-751d-4f00-bda7-2a065d46fcf1)
+-프로필화면
+![image](https://github.com/sjpark1120/twitter_clone/assets/69676617/33582c06-cd4f-4198-8125-29483c398026)
