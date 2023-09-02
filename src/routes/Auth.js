@@ -6,6 +6,12 @@ import {
   } from 'firebase/auth';
 import { authService } from 'myBase';
 import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faTwitter,
+  faGoogle,
+  faGithub,
+} from "@fortawesome/free-brands-svg-icons";
 
 function Auth(){
 
@@ -23,12 +29,22 @@ function Auth(){
     const data = await signInWithPopup(authService, provider);
     console.log(data)
   }
-  return(
-    <div>
+  return (
+    <div className="authContainer">
+      <FontAwesomeIcon
+        icon={faTwitter}
+        color={"#04AAFF"}
+        size="3x"
+        style={{ marginBottom: 30 }}
+      />
       <AuthForm />
-      <div>
-        <button onClick={onSocialClick} name="google">Google 계정으로 로그인</button>
-        <button onClick={onSocialClick} name="github">Github 계정으로 로그인</button>
+      <div className="authBtns">
+        <button onClick={onSocialClick} name="google" className="authBtn">
+          Google계정으로 로그인 <FontAwesomeIcon icon={faGoogle} />
+        </button>
+        <button onClick={onSocialClick} name="github" className="authBtn">
+          Github계정으로 로그인 <FontAwesomeIcon icon={faGithub} />
+        </button>
       </div>
     </div>
   )

@@ -61,42 +61,34 @@ function Profile({ userObj, refreshUser }){
     }
     reader.readAsDataURL(theFile);
   }
-  const onClearProfileImg = () => {
-    setProfileImg("");
-  }
 
   useEffect(()=>{
     getMyTweets();
   }, [])
   return(
-    <>
-      <h1>프로필</h1>
-      <form onSubmit={onSubmit}>
-        <label htmlFor="profile_name">이름</label>
-        <input onChange={onChange} type="text" placeholder="이름 설정" value={newName} id="profile_name" />
-        <br />
-        <label htmlFor="profile_img">프로필 사진</label>
-        <input onChange={onFileChange} type="file" accept="image/*" id="profile_img" />
-        {profileImg && (
-          <div>
-            <img src={profileImg} width="50px" height="50px" />
-            <button onClick={onClearProfileImg}>사진 지우기</button>
-          </div>
-        )}
-        <br />
-        <input type="submit" value="프로필 변경하기" />
+    <div className="container">
+      <form onSubmit={onSubmit} className="profileForm">
+        <label htmlFor="img-file" className="profileImg_label">
+          <img src={profileImg ? profileImg : userObj.photoURL} height="150px" width="150px" className="profileImg"/>
+        </label>
+        <input id="img-file" onChange={onFileChange} type="file" accept="image/*" style={{
+          opacity: 0,
+        }}/>
+        <input onChange={onChange} type="text" autoFocus placeholder="이름 설정" value={newName} className="formInput" />
+        <input type="submit" value="프로필 변경하기" className="formBtn"
+          style={{
+            marginTop: 10,
+          }} />
+        <span className="formBtn cancelBtn logOut" onClick={onLogoutClick}>
+          Log Out
+        </span>
       </form>
-      <img src={userObj.photoURL} height="150px" width="150px" />
-      <h3>이름: {userObj.displayName}</h3>
-      <button onClick={onLogoutClick}>로그아웃</button>
-      <hr />
-      <h2>내가 작성한 트윗 목록</h2>
       <div>
         {myTweetList.map((tweet) => (
           <Tweet key={tweet.id} tweetObj={tweet} isOwner={tweet.creatorId === userObj.uid} />
         ))}
       </div>
-    </>
+    </div>
   )
 }
 

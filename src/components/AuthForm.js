@@ -5,6 +5,8 @@ import {
   } from 'firebase/auth';
 import React, { useState } from "react";
 
+const inputStyles = {};
+
 function AuthForm(){
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -42,7 +44,7 @@ function AuthForm(){
   const toggleAccount = () => setNewAccount(prev => !prev);
   return (
     <>
-      <form onSubmit={onSubmit}>
+      <form className="container" onSubmit={onSubmit}>
         <input
           name="email"
           type="text"
@@ -50,6 +52,7 @@ function AuthForm(){
           required
           value={email}
           onChange={onChange}
+          className="authInput"
         />
         <input
           name="password"
@@ -58,11 +61,12 @@ function AuthForm(){
           required
           value={password}
           onChange={onChange}
+          className="authInput"
         />
-        <input type="submit" value={newAccount ? "회원 가입" : "로그인"} />
-        {error}
+        <input className="authInput authSubmit" type="submit" value={newAccount ? "회원 가입" : "로그인"} />
+        {error && <span className="authError">{error}</span>}
       </form>
-      <span onClick={toggleAccount}>{newAccount ? "로그인 하기" : "회원 가입 하기"}</span>
+      <span className="authSwitch" onClick={toggleAccount}>{newAccount ? "로그인 하기" : "회원 가입 하기"}</span>
     </>
   )
 }
