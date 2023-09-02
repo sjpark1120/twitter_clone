@@ -11,7 +11,7 @@ import Profile from "routes/Profile";
 
 function AppRouter({ refreshUser, isLoggedIn, userObj }) {
   return (
-    <Router>
+    <Router basename="twitter_clone">
       {isLoggedIn && <Navigation userObj={userObj} />}
       <Switch>
         {isLoggedIn ? (
@@ -25,10 +25,10 @@ function AppRouter({ refreshUser, isLoggedIn, userObj }) {
               justifyContent: "center",
             }}
           >
-            <Route exact path="/">
+            <Route path="/">
               <Home userObj={userObj} />
             </Route>
-            <Route exact path="/profile">
+            <Route path="/profile">
               <Profile userObj={userObj} refreshUser={refreshUser} />
             </Route>
           </div>
