@@ -25,10 +25,10 @@ function AppRouter({ refreshUser, isLoggedIn, userObj }) {
               justifyContent: "center",
             }}
           >
-            <Route path="/">
+            <Route exact path="/">
               <Home userObj={userObj} />
             </Route>
-            <Route path="/profile">
+            <Route exact path="/profile">
               <Profile userObj={userObj} refreshUser={refreshUser} />
             </Route>
           </div>
